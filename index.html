@@ -3,42 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QCLAW AI工作室 - 身份验证</title>
+<title>QCLAW AI工作室 - Agent看板</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#0f1117;color:#e6edf3;min-height:100vh;display:flex;align-items:center;justify-content:center}
-  .gate{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:48px 40px;max-width:420px;width:100%;text-align:center}
-  h1{font-size:1.6rem;font-weight:600;margin-bottom:8px}
-  p{color:#8b949e;font-size:0.9rem;margin-bottom:28px}
-  input{width:100%;padding:12px 16px;background:#0d1117;border:1px solid #30363d;border-radius:8px;color:#e6edf3;font-size:1rem;outline:none;margin-bottom:16px}
-  input:focus{border-color:#58a6ff}
-  button{width:100%;padding:12px;background:#238636;border:none;border-radius:8px;color:#fff;font-size:1rem;cursor:pointer;font-weight:500}
-  button:hover{background:#2ea043}
-  .error{color:#f85149;font-size:0.85rem;margin-top:8px;display:none}
-  #content{display:none}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#0f1117;color:#e6edf3;min-height:100vh;padding:40px 20px}
+  h1{text-align:center;font-size:1.8rem;font-weight:600;margin-bottom:12px;color:#e6edf3}
+  .subtitle{text-align:center;font-size:0.9rem;color:#8b949e;margin-bottom:40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;max-width:1200px;margin:0 auto}
+  .card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px 24px 24px 28px;position:relative;overflow:hidden;transition:border-color .2s}
+  .card:hover{border-color:#8b949e}
+  .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#58a6ff}
+  .card.purple::before{background:#a371f7}
+  .card.green::before{background:#3fb950}
+  .card.orange::before{background:#d29922}
+  .card.red::before{background:#f85149}
+  .card.gray::before{background:#8b949e}
+  .card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .card-icon{font-size:1.4rem}
+  .card-name{font-size:1.1rem;font-weight:600;color:#e6edf3}
+  .card-role{font-size:0.8rem;color:#8b949e;margin-bottom:10px}
+  .tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:0.75rem;font-weight:500;margin-bottom:10px}
+  .tag.ok{background:#1f6feb26;color:#58a6ff;border:1px solid #1f6feb50}
+  .tag.pending{background:#d2992226;color:#d29922;border:1px solid #d2992250}
+  .tag.locked{background:#f8514926;color:#f85149;border:1px solid #f8514950}
+  .card-info{margin-bottom:8px;font-size:0.85rem;color:#8b949e}
+  .card-info strong{color:#c9d1d9}
+  .card-desc{font-size:0.82rem;color:#8b949e;line-height:1.5}
+  .divider{height:1px;background:#30363d;margin:30px auto;max-width:1200px}
+  .other-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;max-width:1200px;margin:0 auto;padding:0 0 40px}
+  .other-card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px 18px;display:flex;align-items:center;gap:10px}
+  .other-icon{font-size:1.1rem}
+  .other-name{font-size:0.85rem;color:#c9d1d9;font-weight:500}
+  .footer{text-align:center;font-size:0.75rem;color:#484f58;margin-top:40px}
 </style>
 </head>
 <body>
-<div class="gate" id="gate">
-  <h1>QCLAW AI工作室</h1>
-  <p>请输入访问密码</p>
-  <input type="password" id="pw" placeholder="请输入密码" onkeydown="if(event.key==='Enter')check()">
-  <button onclick="check()">进入工作室</button>
-  <div class="error" id="err">密码错误，请重试</div>
+<h1>QCLAW AI工作室</h1>
+<p class="subtitle">Herr Li 的专属 AI 团队 · 已配置 3/8 位专家</p>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">&#x1F52E;</span>
+      <span class="card-name">生辰命理大师</span>
+    </div>
+    <div class="card-role">八字命理 / 运势分析</div>
+    <span class="tag ok">&#x2705; 已配置</span>
+    <div class="card-info"><strong>调用 ID:</strong> sjkyvvr4niogu3pv</div>
+    <div class="card-info"><strong>前提要求:</strong> <span style="color:#3fb950">已提供（1997年3月5日 下午3:02）</span></div>
+    <div class="card-desc">解读四柱八字，提供每日/每周运势建议、感情事业财运分析、婚恋适配指导。</div>
+  </div>
+
+  <div class="card purple">
+    <div class="card-header">
+      <span class="card-icon">&#x1F4DA;</span>
+      <span class="card-name">学习规划师</span>
+    </div>
+    <div class="card-role">备考规划 / 学习计划</div>
+    <span class="tag ok">&#x2705; 已配置</span>
+    <div class="card-info"><strong>调用 ID:</strong> jjeqodl716rrkh2d</div>
+    <div class="card-info"><strong>前提要求:</strong> <span style="color:#3fb950">已提供（每天可学习2小时）</span></div>
+    <div class="card-desc">2026年一级建造师（建筑工程）一年过四科备考规划，含经济、法规、管理、建筑实务四科复习策略。</div>
+  </div>
+
+  <div class="card green">
+    <div class="card-header">
+      <span class="card-icon">&#x1F3A8;</span>
+      <span class="card-name">设计顾问</span>
+    </div>
+    <div class="card-role">视觉呈现 / PPT排版</div>
+    <span class="tag ok">&#x2705; 已配置</span>
+    <div class="card-info"><strong>调用 ID:</strong> a34efcdcf2e1b897ee004a6f32823476</div>
+    <div class="card-info"><strong>前提要求:</strong> <span style="color:#3fb950">无需特殊信息</span></div>
+    <div class="card-desc">视觉呈现顾问，评估和改进PPT/报告排版、数据图表、品牌视觉，擅长信息呼吸感设计理念。</div>
+  </div>
 </div>
-<div id="content"></div>
-<script>
-var encoded = "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9InpoLUNOIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+UUNMQVcgQUnlt6XkvZzlrqQgLSDouqvku73pqozor4E8L3RpdGxlPgo8c3R5bGU+CiAgKnttYXJnaW46MDtwYWRkaW5nOjA7Ym94LXNpemluZzpib3JkZXItYm94fQogIGJvZHl7Zm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSxCbGlua01hY1N5c3RlbUZvbnQsIlNlZ29lIFVJIixSb2JvdG8sIkhlbHZldGljYSBOZXVlIixBcmlhbCxzYW5zLXNlcmlmO2JhY2tncm91bmQ6IzBmMTExNztjb2xvcjojZTZlZGYzO21pbi1oZWlnaHQ6MTAwdmg7cGFkZGluZzo0MHB4IDIwcHh9CiAgaDF7dGV4dC1hbGlnbjpjZW50ZXI7Zm9udC1zaXplOjEuOHJlbTtmb250LXdlaWdodDo2MDA7bWFyZ2luLWJvdHRvbToxMnB4O2NvbG9yOiNlNmVkZjN9CiAgLnN1YnRpdGxle3RleHQtYWxpZ246Y2VudGVyO2ZvbnQtc2l6ZTowLjlyZW07Y29sb3I6IzhiOTQ5ZTttYXJnaW4tYm90dG9tOjQwcHh9CiAgLmdyaWR7ZGlzcGxheTpncmlkO2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoYXV0by1maWxsLG1pbm1heCgzMjBweCwxZnIpKTtnYXA6MjBweDttYXgtd2lkdGg6MTIwMHB4O21hcmdpbjowIGF1dG99CiAgLmNhcmR7YmFja2dyb3VuZDojMTYxYjIyO2JvcmRlcjoxcHggc29saWQgIzMwMzYzZDtib3JkZXItcmFkaXVzOjEycHg7cGFkZGluZzoyNHB4IDI0cHggMjRweCAyOHB4O3Bvc2l0aW9uOnJlbGF0aXZlO292ZXJmbG93OmhpZGRlbjt0cmFuc2l0aW9uOmJvcmRlci1jb2xvciAuMnN9CiAgLmNhcmQ6aG92ZXJ7Ym9yZGVyLWNvbG9yOiM4Yjk0OWV9CiAgLmNhcmQ6OmJlZm9yZXtjb250ZW50OicnO3Bvc2l0aW9uOmFic29sdXRlO2xlZnQ6MDt0b3A6MDtib3R0b206MDt3aWR0aDo0cHg7YmFja2dyb3VuZDojNThhNmZmfQogIC5jYXJkLnB1cnBsZTo6YmVmb3Jle2JhY2tncm91bmQ6I2EzNzFmN30KICAuY2FyZC5ncmVlbjo6YmVmb3Jle2JhY2tncm91bmQ6IzNmYjk1MH0KICAuY2FyZC5vcmFuZ2U6OmJlZm9yZXtiYWNrZ3JvdW5kOiNkMjk5MjJ9CiAgLmNhcmQucmVkOjpiZWZvcmV7YmFja2dyb3VuZDojZjg1MTQ5fQogIC5jYXJkLmdyYXk6OmJlZm9yZXtiYWNrZ3JvdW5kOiM4Yjk0OWV9CiAgLmNhcmQtaGVhZGVye2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7Z2FwOjEwcHg7bWFyZ2luLWJvdHRvbToxMnB4fQogIC5jYXJkLWljb257Zm9udC1zaXplOjEuNHJlbX0KICAuY2FyZC1uYW1le2ZvbnQtc2l6ZToxLjFyZW07Zm9udC13ZWlnaHQ6NjAwO2NvbG9yOiNlNmVkZjN9CiAgLmNhcmQtcm9sZXtmb250LXNpemU6MC44cmVtO2NvbG9yOiM4Yjk0OWU7bWFyZ2luLWJvdHRvbToxMHB4fQogIC50YWd7ZGlzcGxheTppbmxpbmUtYmxvY2s7cGFkZGluZzoycHggOHB4O2JvcmRlci1yYWRpdXM6MTJweDtmb250LXNpemU6MC43NXJlbTtmb250LXdlaWdodDo1MDA7bWFyZ2luLWJvdHRvbToxMHB4fQogIC50YWcub2t7YmFja2dyb3VuZDojMWY2ZmViMjY7Y29sb3I6IzU4YTZmZjtib3JkZXI6MXB4IHNvbGlkICMxZjZmZWI1MH0KICAudGFnLnBlbmRpbmd7YmFja2dyb3VuZDojZDI5OTIyMjY7Y29sb3I6I2QyOTkyMjtib3JkZXI6MXB4IHNvbGlkICNkMjk5MjI1MH0KICAudGFnLmxvY2tlZHtiYWNrZ3JvdW5kOiNmODUxNDkyNjtjb2xvcjojZjg1MTQ5O2JvcmRlcjoxcHggc29saWQgI2Y4NTE0OTUwfQogIC5jYXJkLWluZm97bWFyZ2luLWJvdHRvbTo4cHg7Zm9udC1zaXplOjAuODVyZW07Y29sb3I6IzhiOTQ5ZX0KICAuY2FyZC1pbmZvIHN0cm9uZ3tjb2xvcjojYzlkMWQ5fQogIC5jYXJkLWRlc2N7Zm9udC1zaXplOjAuODJyZW07Y29sb3I6IzhiOTQ5ZTtsaW5lLWhlaWdodDoxLjV9CiAgLmRpdmlkZXJ7aGVpZ2h0OjFweDtiYWNrZ3JvdW5kOiMzMDM2M2Q7bWFyZ2luOjMwcHggYXV0bzttYXgtd2lkdGg6MTIwMHB4fQogIC5vdGhlci1ncmlke2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6cmVwZWF0KGF1dG8tZmlsbCxtaW5tYXgoMjAwcHgsMWZyKSk7Z2FwOjEycHg7bWF4LXdpZHRoOjEyMDBweDttYXJnaW46MCBhdXRvO3BhZGRpbmc6MCAwIDQwcHh9CiAgLm90aGVyLWNhcmR7YmFja2dyb3VuZDojMTYxYjIyO2JvcmRlcjoxcHggc29saWQgIzMwMzYzZDtib3JkZXItcmFkaXVzOjhweDtwYWRkaW5nOjE0cHggMThweDtkaXNwbGF5OmZsZXg7YWxpZ24taXRlbXM6Y2VudGVyO2dhcDoxMHB4fQogIC5vdGhlci1pY29ue2ZvbnQtc2l6ZToxLjFyZW19CiAgLm90aGVyLW5hbWV7Zm9udC1zaXplOjAuODVyZW07Y29sb3I6I2M5ZDFkOTtmb250LXdlaWdodDo1MDB9CiAgLmZvb3Rlcnt0ZXh0LWFsaWduOmNlbnRlcjtmb250LXNpemU6MC43NXJlbTtjb2xvcjojNDg0ZjU4O21hcmdpbi10b3A6NDBweH0KPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KPGgxPlFDTEFXIEFJ5bel5L2c5a6kPC9oMT4KPHAgY2xhc3M9InN1YnRpdGxlIj5IZXJyIExpIOeahOS4k+WxniBBSSDlm6LpmJ8gwrcg5bey6YWN572uIDMvOCDkvY3kuJPlrrY8L3A+Cgo8ZGl2IGNsYXNzPSJncmlkIj4KICA8ZGl2IGNsYXNzPSJjYXJkIj4KICAgIDxkaXYgY2xhc3M9ImNhcmQtaGVhZGVyIj4KICAgICAgPHNwYW4gY2xhc3M9ImNhcmQtaWNvbiI+JiN4MUY1MkU7PC9zcGFuPgogICAgICA8c3BhbiBjbGFzcz0iY2FyZC1uYW1lIj7nlJ/ovrDlkb3nkIblpKfluIg8L3NwYW4+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImNhcmQtcm9sZSI+5YWr5a2X5ZG955CGIC8g6L+Q5Yq/5YiG5p6QPC9kaXY+CiAgICA8c3BhbiBjbGFzcz0idGFnIG9rIj4mI3gyNzA1OyDlt7LphY3nva48L3NwYW4+CiAgICA8ZGl2IGNsYXNzPSJjYXJkLWluZm8iPjxzdHJvbmc+6LCD55SoIElEOjwvc3Ryb25nPiBzamt5dnZyNG5pb2d1M3B2PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJjYXJkLWluZm8iPjxzdHJvbmc+5YmN5o+Q6KaB5rGCOjwvc3Ryb25nPiA8c3BhbiBzdHlsZT0iY29sb3I6IzNmYjk1MCI+5bey5o+Q5L6b77yIMTk5N+W5tDPmnIg15pelIOS4i+WNiDM6MDLvvIk8L3NwYW4+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJjYXJkLWRlc2MiPuino+ivu+Wbm+afseWFq+Wtl++8jOaPkOS+m+avj+aXpS/mr4/lkajov5Dlir/lu7rorq7jgIHmhJ/mg4XkuovkuJrotKLov5DliIbmnpDjgIHlqZrmgYvpgILphY3mjIflr7zjgII8L2Rpdj4KICA8L2Rpdj4KCiAgPGRpdiBjbGFzcz0iY2FyZCBwdXJwbGUiPgogICAgPGRpdiBjbGFzcz0iY2FyZC1oZWFkZXIiPgogICAgICA8c3BhbiBjbGFzcz0iY2FyZC1pY29uIj4mI3gxRjREQTs8L3NwYW4+CiAgICAgIDxzcGFuIGNsYXNzPSJjYXJkLW5hbWUiPuWtpuS5oOinhOWIkuW4iDwvc3Bhbj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0iY2FyZC1yb2xlIj7lpIfogIPop4TliJIgLyDlrabkuaDorqHliJI8L2Rpdj4KICAgIDxzcGFuIGNsYXNzPSJ0YWcgb2siPiYjeDI3MDU7IOW3sumFjee9rjwvc3Bhbj4KICAgIDxkaXYgY2xhc3M9ImNhcmQtaW5mbyI+PHN0cm9uZz7osIPnlKggSUQ6PC9zdHJvbmc+IGpqZXFvZGw3MTZycmtoMmQ8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImNhcmQtaW5mbyI+PHN0cm9uZz7liY3mj5DopoHmsYI6PC9zdHJvbmc+IDxzcGFuIHN0eWxlPSJjb2xvcjojM2ZiOTUwIj7lt7Lmj5DkvpvvvIjmr4/lpKnlj6/lrabkuaAy5bCP5pe277yJPC9zcGFuPjwvZGl2PgogICAgPGRpdiBjbGFzcz0iY2FyZC1kZXNjIj4yMDI25bm05LiA57qn5bu66YCg5biI77yI5bu6562R5bel56iL77yJ5LiA5bm06L+H5Zub56eR5aSH6ICD6KeE5YiS77yM5ZCr57uP5rWO44CB5rOV6KeE44CB566h55CG44CB5bu6562R5a6e5Yqh5Zub56eR5aSN5Lmg562W55Wl44CCPC9kaXY+CiAgPC9kaXY+CgogIDxkaXYgY2xhc3M9ImNhcmQgZ3JlZW4iPgogICAgPGRpdiBjbGFzcz0iY2FyZC1oZWFkZXIiPgogICAgICA8c3BhbiBjbGFzcz0iY2FyZC1pY29uIj4mI3gxRjNBODs8L3NwYW4+CiAgICAgIDxzcGFuIGNsYXNzPSJjYXJkLW5hbWUiPuiuvuiuoemhvumXrjwvc3Bhbj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0iY2FyZC1yb2xlIj7op4bop4nlkYjnjrAgLyBQUFTmjpLniYg8L2Rpdj4KICAgIDxzcGFuIGNsYXNzPSJ0YWcgb2siPiYjeDI3MDU7IOW3sumFjee9rjwvc3Bhbj4KICAgIDxkaXYgY2xhc3M9ImNhcmQtaW5mbyI+PHN0cm9uZz7osIPnlKggSUQ6PC9zdHJvbmc+IGEzNGVmY2RjZjJlMWI4OTdlZTAwNGE2ZjMyODIzNDc2PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJjYXJkLWluZm8iPjxzdHJvbmc+5YmN5o+Q6KaB5rGCOjwvc3Ryb25nPiA8c3BhbiBzdHlsZT0iY29sb3I6IzNmYjk1MCI+5peg6ZyA54m55q6K5L+h5oGvPC9zcGFuPjwvZGl2PgogICAgPGRpdiBjbGFzcz0iY2FyZC1kZXNjIj7op4bop4nlkYjnjrDpob7pl67vvIzor4TkvLDlkozmlLnov5tQUFQv5oql5ZGK5o6S54mI44CB5pWw5o2u5Zu+6KGo44CB5ZOB54mM6KeG6KeJ77yM5pOF6ZW/5L+h5oGv5ZG85ZC45oSf6K6+6K6h55CG5b+144CCPC9kaXY+CiAgPC9kaXY+CjwvZGl2PgoKPGRpdiBjbGFzcz0iZGl2aWRlciI+PC9kaXY+Cgo8ZGl2IGNsYXNzPSJvdGhlci1ncmlkIj4KICA8ZGl2IGNsYXNzPSJvdGhlci1jYXJkIj4KICAgIDxzcGFuIGNsYXNzPSJvdGhlci1pY29uIj4mI3gxRjRDQTs8L3NwYW4+CiAgICA8c3BhbiBjbGFzcz0ib3RoZXItbmFtZSI+6auY57qn5pWw5o2u5YiG5p6Q5biIPC9zcGFuPgogIDwvZGl2PgogIDxkaXYgY2xhc3M9Im90aGVyLWNhcmQiPgogICAgPHNwYW4gY2xhc3M9Im90aGVyLWljb24iPiYjeDFGNENCOzwvc3Bhbj4KICAgIDxzcGFuIGNsYXNzPSJvdGhlci1uYW1lIj7mlbDmja7liIbmnpDluIg8L3NwYW4+CiAgPC9kaXY+CiAgPGRpdiBjbGFzcz0ib3RoZXItY2FyZCI+CiAgICA8c3BhbiBjbGFzcz0ib3RoZXItaWNvbiI+JiN4MUY0QUE7PC9zcGFuPgogICAgPHNwYW4gY2xhc3M9Im90aGVyLW5hbWUiPuaTjeW/g+iHquW+i+edo+WvvDwvc3Bhbj4KICA8L2Rpdj4KICA8ZGl2IGNsYXNzPSJvdGhlci1jYXJkIj4KICAgIDxzcGFuIGNsYXNzPSJvdGhlci1pY29uIj4mI3gxRjRDNTs8L3NwYW4+CiAgICA8c3BhbiBjbGFzcz0ib3RoZXItbmFtZSI+5pel56iL566h55CG5LiT5a62PC9zcGFuPgogIDwvZGl2PgogIDxkaXYgY2xhc3M9Im90aGVyLWNhcmQiPgogICAgPHNwYW4gY2xhc3M9Im90aGVyLWljb24iPiYjeDFGM0Q3Ozwvc3Bhbj4KICAgIDxzcGFuIGNsYXNzPSJvdGhlci1uYW1lIj7pq5jnuqfpobnnm67nu4/nkIY8L3NwYW4+CiAgPC9kaXY+CjwvZGl2PgoKPGRpdiBjbGFzcz0iZm9vdGVyIj4KICBRQ0xBVyBBSeW3peS9nOWupCDCtyBQb3dlcmVkIGJ5IE9wZW5DbGF3PGJyPgogIOeKtuaAgeabtOaWsOaXtumXtDogMjAyNi0wNC0yNgo8L2Rpdj4KPC9ib2R5Pgo8L2h0bWw+";
-function check(){
-  if(document.getElementById('pw').value==='Qclaw2026'){
-    document.getElementById('gate').style.display='none';
-    var d=document.getElementById('content');
-    d.style.display='block';
-    d.innerHTML=atob(encoded);
-  }else{
-    document.getElementById('err').style.display='block';
-  }
-}
-</script>
+
+<div class="divider"></div>
+
+<div class="other-grid">
+  <div class="other-card">
+    <span class="other-icon">&#x1F4CA;</span>
+    <span class="other-name">高级数据分析师</span>
+  </div>
+  <div class="other-card">
+    <span class="other-icon">&#x1F4CB;</span>
+    <span class="other-name">数据分析师</span>
+  </div>
+  <div class="other-card">
+    <span class="other-icon">&#x1F4AA;</span>
+    <span class="other-name">操心自律督导</span>
+  </div>
+  <div class="other-card">
+    <span class="other-icon">&#x1F4C5;</span>
+    <span class="other-name">日程管理专家</span>
+  </div>
+  <div class="other-card">
+    <span class="other-icon">&#x1F3D7;</span>
+    <span class="other-name">高级项目经理</span>
+  </div>
+</div>
+
+<div class="footer">
+  QCLAW AI工作室 · Powered by OpenClaw<br>
+  状态更新时间: 2026-04-26
+</div>
 </body>
 </html>
